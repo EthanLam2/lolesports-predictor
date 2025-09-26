@@ -196,28 +196,3 @@ def print_prediction(result, model_name):
 if __name__ == "__main__":
     # initialize predictor
     predictor = LolPredictor()
-
-    # match data from before the game starts
-    blue_team = {
-        "team_name": "t1",
-        "players": {"TOP": "doran", "JUNGLE": "oner", "MID": "faker", "ADC": "gumayusi", "SUPPORT": "keria"},
-        "champions": {"TOP": "gwen", "JUNGLE": "jarvan iv", "MID": "azir", "ADC": "corki", "SUPPORT": "poppy"}
-    }
-
-    red_team = {
-        "team_name": "gen.g esports",
-        "players": {"TOP": "kiin", "JUNGLE": "canyon", "MID": "chovy", "ADC": "ruler", "SUPPORT": "duro"},
-        "champions": {"TOP": "sion", "JUNGLE": "wukong", "MID": "annie", "ADC": "kaisa", "SUPPORT": "neeko"}
-    }
-    match_info = predictor.create_match_info(15.17, "kr",  blue_team, red_team)
-    # test both models
-    voting_result = predictor.predict_voting(match_info)
-    elastic_result = predictor.predict_elastic(match_info)
-        
-    print_prediction(voting_result, "Voting Model")
-    print_prediction(elastic_result, "Elastic Net Model")
-    print(predictor.get_teams())
-    print(predictor.get_team_players("bilibili gaming"))
-    print(predictor.get_champions("TOP"))
-    print(predictor.get_regions())
-    print(predictor.get_patches())
