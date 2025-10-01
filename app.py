@@ -43,9 +43,7 @@ def main():
         st.header("Match Info")
     
         selected_region = st.selectbox("Region", regions)
-        
-        extended_patches = [f"{patches[0]+0.02:.2f}", f"{patches[0]+0.01:.2f}"] + patches
-        selected_patch = st.selectbox("Patch #", extended_patches, index=len(patches)-1)
+        selected_patch = st.selectbox("Patch #", patches, index=len(patches)-1)
     
     col_blue, col_red = st.columns(2)
 
