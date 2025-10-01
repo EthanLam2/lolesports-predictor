@@ -84,6 +84,24 @@ def main():
     blue_team_players = predictor.get_team_players(blue_team_name)
     red_team_players = predictor.get_team_players(red_team_name)
 
+    col_blue, col_role, col_red = st.columns([3, 1, 3])
+    # add player and champion headers for columns
+    with col_blue:
+        player_col, champ_col = st.columns(2)
+        with player_col:
+            st.markdown("<small>**Player**</small>", unsafe_allow_html=True)
+        with champ_col:
+            st.markdown("<small>**Champion**</small>", unsafe_allow_html=True)
+
+    with col_role:
+        st.write("")
+
+    with col_red:
+        champ_col, player_col = st.columns(2)
+        with champ_col:
+            st.markdown("<small>**Champion**</small>", unsafe_allow_html=True)
+        with player_col:
+            st.markdown("<small>**Player**</small>", unsafe_allow_html=True)
 
     
     for role in roles:
@@ -98,7 +116,7 @@ def main():
         with col_blue:
             # player and champion in sub columns
             player_col, champ_col = st.columns(2)
-            
+                        
             with player_col:
                 player_options = blue_team_players.get(role, []) + ["Custom Input"]
                 selected_player = st.selectbox(
@@ -122,7 +140,7 @@ def main():
                 else:
                     blue_champions[role] = selected_champion
         
-       
+        
         with col_red:
             # player and champion in sub columns
             champ_col, player_col = st.columns(2)
@@ -147,6 +165,7 @@ def main():
                     )
                 else:
                     red_champions[role] = selected_champion
+        
         
         st.write("")
 
