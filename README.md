@@ -23,7 +23,7 @@ This project demonstrates an end-to-end machine learning workflow with four main
 ## Match Setup Interface:
 ![Match Setup](images/matchsetup.png)
 1. Select region and patch version from side bar
-2. Choose teams for bleu and red side
+2. Choose teams for blue and red side
 3. Select players and champions for each role
 4. Select "Predict Match Outcome Button" for predictions from both models
 
