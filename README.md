@@ -2,7 +2,7 @@
 
 Hosted at http://lolesports-predictor.streamlit.app
 
-This is a personal project that predicts the outcome of professional League of Legends matches using machine learning. The model analyzes team strength, player statistics, and champion picks to try to predict match winners with approximately 75% test accuracy on both models.
+This is a personal project that tries to predict the outcome of professional League of Legends matches using machine learning. The model analyzes team strength, player statistics, and champion picks to try to predict match winners with approximately 75% test accuracy on both models.
 
 This project demonstrates an end-to-end machine learning workflow with four main components:
 1. A web scraper that collects professional match data from major regions in the 2025 season from gol.gg
@@ -25,7 +25,7 @@ This project demonstrates an end-to-end machine learning workflow with four main
 1. Select region and patch version from side bar
 2. Choose teams for blue and red side
 3. Select players and champions for each role
-4. Select "Predict Match Outcome Button" for predictions from both models
+4. Click "Predict Match Outcome Button" for predictions from both models
 
 ## Prediction Results:
 ![Prediction Results](images/predictionresults.png)
