@@ -187,7 +187,7 @@ def main():
         
         # create match info using predictor function
         match_info = predictor.create_match_info(
-            patch=float(selected_patch),
+            patch=selected_patch,
             region=selected_region,
             blue_team=blue_team_dict,
             red_team=red_team_dict

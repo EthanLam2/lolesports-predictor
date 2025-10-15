@@ -8,18 +8,18 @@ class LolPredictor:
     # load encoders, models and model inputs
     def load_data(self):
         self.encoders = {
-            "champion": joblib.load("models/champion_encoders.pkl"),
-            "player": joblib.load("models/player_encoders.pkl"),
-            "team": joblib.load("models/team_encoder.pkl"),
-            "region": joblib.load("models/region_encoder.pkl"),
-            "patch": joblib.load("models/patch_encoder.pkl")
+            "champion": joblib.load("champion_encoders.pkl"),
+            "player": joblib.load("player_encoders.pkl"),
+            "team": joblib.load("team_encoder.pkl"),
+            "region": joblib.load("region_encoder.pkl"),
+            "patch": joblib.load("patch_encoder.pkl")
         }
-        self.final_team_elos = joblib.load("models/final_team_elos.pkl")
-        self.feature_columns = joblib.load("models/feature_columns.pkl")
-        self.voting_model = joblib.load("models/voting_ensemble_model.pkl")
-        self.elastic_model = joblib.load("models/elastic_net_model.pkl")
-        self.df_original = pd.read_csv("data/processed_historical_data.csv")
-        
+        self.final_team_elos = joblib.load("final_team_elos.pkl")
+        self.feature_columns = joblib.load("feature_columns.pkl")
+        self.voting_model = joblib.load("voting_ensemble_model.pkl")
+        self.elastic_model = joblib.load("elastic_net_model.pkl")
+        self.df_original = pd.read_csv("processed_historical_data.csv")
+    
     def get_player_historical_stats(self, player_name, role):
         stat_columns = ["kills", "deaths", "assists", "kp%", "dmg%", "gd@15"]
         historical_stats = {}
@@ -64,7 +64,7 @@ class LolPredictor:
         prediction_data = {}
         
         # one hot encode the patch number
-        patch_df = pd.DataFrame({"Patch": [match_info["patch"]]})
+        patch_df = pd.DataFrame({"Patch": [str(match_info["patch"])]})
         patch_encoded = self.encoders["patch"].transform(patch_df)
         patch_features = self.encoders["patch"].get_feature_names_out(["Patch"])
         for i, feature_name in enumerate(patch_features):
@@ -120,7 +120,6 @@ class LolPredictor:
     
     def predict_elastic(self, match_info):
         return self.predict_match(match_info, self.elastic_model)
-      
 
     # get all teams
     def get_teams(self):
@@ -166,14 +165,13 @@ class LolPredictor:
         # get patches from one hot encoded columns
         patch_columns = [col for col in self.df_original.columns if col.startswith('Patch_')]
         # default patch not one hot encoded
-        patches = [15.1]
+        patches = ["15.1"]
     
         # add patches that have one hot columns
         for col in patch_columns:
             patch_str = col.replace('Patch_', '')
-            patch_float = float(patch_str)
-            patches.append(patch_float)
-        sorted_patches = sorted(patches, key=lambda x: (int(str(x).split('.')[0]), int(str(x).split('.')[1])), reverse = True)
+            patches.append(patch_str)
+        sorted_patches = sorted(patches, key=lambda x: (int(str(x).split('.')[0]), int(str(x).split('.')[1])))
         return sorted_patches
 
     def create_match_info(self, patch, region, blue_team, red_team):
