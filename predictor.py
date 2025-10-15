@@ -8,18 +8,18 @@ class LolPredictor:
     # load encoders, models and model inputs
     def load_data(self):
         self.encoders = {
-            "champion": joblib.load("champion_encoders.pkl"),
-            "player": joblib.load("player_encoders.pkl"),
-            "team": joblib.load("team_encoder.pkl"),
-            "region": joblib.load("region_encoder.pkl"),
-            "patch": joblib.load("patch_encoder.pkl")
+            "champion": joblib.load("models/champion_encoders.pkl"),
+            "player": joblib.load("models/player_encoders.pkl"),
+            "team": joblib.load("models/team_encoder.pkl"),
+            "region": joblib.load("models/region_encoder.pkl"),
+            "patch": joblib.load("models/patch_encoder.pkl")
         }
-        self.final_team_elos = joblib.load("final_team_elos.pkl")
-        self.feature_columns = joblib.load("feature_columns.pkl")
-        self.voting_model = joblib.load("voting_ensemble_model.pkl")
-        self.elastic_model = joblib.load("elastic_net_model.pkl")
-        self.df_original = pd.read_csv("processed_historical_data.csv")
-    
+        self.final_team_elos = joblib.load("models/final_team_elos.pkl")
+        self.feature_columns = joblib.load("models/feature_columns.pkl")
+        self.voting_model = joblib.load("models/voting_ensemble_model.pkl")
+        self.elastic_model = joblib.load("models/elastic_net_model.pkl")
+        self.df_original = pd.read_csv("data/processed_historical_data.csv")
+        
     def get_player_historical_stats(self, player_name, role):
         stat_columns = ["kills", "deaths", "assists", "kp%", "dmg%", "gd@15"]
         historical_stats = {}
