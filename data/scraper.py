@@ -279,7 +279,7 @@ def get_game_id(links: list[str]) -> list[int]:
 def main():
     links = get_matchlist_links()[::-1]
     games_links = []
-    link = links[-4]
+    link = links[-1]
     # iterate through all the links to get all the game links
     #for link in links:
     games_links.extend(get_games_links(link))
