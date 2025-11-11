@@ -31,6 +31,6 @@ This project demonstrates an end-to-end machine learning workflow with four main
 ![Prediction Results](images/predictionresults.png)
 
 ## Model Performance:
-- Voting Ensemble: 75.76% test accuracy
-- Elastic Net: 74.89% test accuracy
-- Dataset: 2286 professional matches from major regions
+- Voting Ensemble: 77.64% test accuracy
+- Elastic Net: 77.43% test accuracy
+- Dataset: 2370 professional matches from major regions
